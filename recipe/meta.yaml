@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "10.12.0" %}
+{% set version = "10.13.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 83fb3eff778beec3c55201455c17cccde1ccdf66d5b4dade8ef28f56b50c4bd4
+  sha256: d80fc76f34d819c481a48f73ec9ac396bed3bd6a16ecd57f9e0654cd89a8fb56
 
 build:
   skip: true  # [py<=36 and win]
