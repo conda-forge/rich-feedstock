@@ -12,7 +12,7 @@ source:
 
 build:
   skip: true  # [py<=36 and win]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -27,10 +27,10 @@ requirements:
   run:
     - colorama >=0.4.0,<0.5.0
     - commonmark >=0.9.0,<0.10.0
-    - dataclasses >=0.7,<0.8  # [py>=36 and py<37]
+    - dataclasses >=0.7,<0.9  # [py>=36 and py<37]
     - pygments >=2.6.0,<3.0.0
     - python
-    - typing_extensions >=3.7.4,<4.0.0
+    - typing_extensions >=3.7.4,<5.0.0
 
 test:
   imports:
