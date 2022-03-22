@@ -5,7 +5,7 @@ Home: https://github.com/willmcgugan/rich
 
 Package license: MIT
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rich-feedstock/blob/master/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rich-feedstock/blob/main/LICENSE.txt)
 
 Summary: Rich is a Python library for rich text and beautiful formatting in the terminal.
 
@@ -26,8 +26,8 @@ Current build status
 
 <table><tr><td>All platforms:</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10240&branchName=master">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rich-feedstock?branchName=master">
+      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=10240&branchName=main">
+        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rich-feedstock?branchName=main">
       </a>
     </td>
   </tr>
