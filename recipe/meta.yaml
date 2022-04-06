@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "12.1.0" %}
+{% set version = "12.2.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 198ae15807a7c1bf84ceabf662e902731bf8f874f9e775e2289cab02bb6a4e30
+  sha256: ea74bc9dad9589d8eea3e3fd0b136d8bf6e428888955f215824c2894f0da8b47
 
 build:
   noarch: python
