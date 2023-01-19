@@ -1,5 +1,5 @@
 {% set name = "rich" %}
-{% set version = "13.1.0" %}
+{% set version = "13.2.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 81c73a30b144bbcdedc13f4ea0b6ffd7fdc3b0d3cc259a9402309c8e4aee1964
+  sha256: f1a00cdd3eebf999a15d85ec498bfe0b1a77efe9b34f645768a54132ef444ac5
 
 build:
   noarch: python
@@ -27,6 +27,7 @@ requirements:
     - pygments >=2.6.0,<3.0.0
     - python >=3.6.2
     - typing_extensions >=4.0.0,<5.0.0
+    - markdown-it-py
 
 test:
   imports:
