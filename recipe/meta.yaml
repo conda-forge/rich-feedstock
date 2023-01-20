@@ -1,59 +1,115 @@
-{% set name = "rich" %}
 {% set version = "13.2.0" %}
-
+{% set min_python = ">=3.7.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: rich-split
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f1a00cdd3eebf999a15d85ec498bfe0b1a77efe9b34f645768a54132ef444ac5
+  - folder: dist
+    url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
+    sha256: f1a00cdd3eebf999a15d85ec498bfe0b1a77efe9b34f645768a54132ef444ac5
+  - folder: src
+    url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: b1bcd42f354c377b567143c832ad7922c1ca7ed806c0d69d63bd881a979e3cbf
 
 build:
   noarch: python
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 1
 
 requirements:
   host:
-    - pip
-    - python >=3.6.3
-    - poetry >=1.0.10
-    - poetry-core
+    - python {{ min_python }}
   run:
-    - commonmark >=0.9.0,<0.10.0
-    - dataclasses >=0.7,<0.9
-    - pygments >=2.6.0,<3.0.0
-    - python >=3.6.2
-    - typing_extensions >=4.0.0,<5.0.0
-    - markdown-it-py
+    - python {{ min_python }}
 
-test:
-  imports:
-    - rich
-  commands:
-    - pip check
-  requires:
-    - pip
+outputs:
+  - name: rich
+    build:
+      noarch: python
+      script:
+        # use the poetry-generated setup.py
+        - {{ PYTHON }} -c "__import__('pathlib').Path('dist/pyproject.toml').unlink()"
+        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+    requirements:
+      host:
+        - pip
+        - python {{ min_python }}
+      run:
+        # sync with normalized deps from poetry-generated setup.py
+        - markdown-it-py >=2.1.0,<3.0.0
+        - pygments >=2.6.0,<3.0.0
+        - python {{ min_python }}
+        - typing_extensions >=4.0.0,<5.0.0
+    test:
+      imports:
+        - rich
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: rich-with-jupyter
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python {{ min_python }}
+      run:
+        - {{ pin_subpackage("rich", max_pin="x.x.x") }}
+        - ipywidgets >=7.5.1,<8.0.0
+        - python {{ min_python }}
+    test:
+      imports:
+        - rich
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: _rich-with-tests
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python {{ min_python }}
+      run:
+        - {{ pin_subpackage("rich", max_pin="x.x.x") }}
+        - {{ pin_subpackage("rich-with-jupyter", max_pin="x.x.x") }}
+        - python {{ min_python }}
+    test:
+      source_files:
+        - src/tests
+      imports:
+        - rich
+      commands:
+        - pip check
+        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
+      requires:
+        - pip
+        - pytest >=7.0.0,<8.0.0
+        - pytest-cov >=3.0.0,<4.0.0
 
 about:
-  home: https://github.com/willmcgugan/rich
+  home: https://github.com/Textualize/rich
   license: MIT
   license_family: MIT
-  license_file: LICENSE
-  summary: Rich is a Python library for rich text and beautiful formatting in the terminal.
+  license_file: dist/LICENSE
+  summary: Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal
 
   description: |
-    Rich is a Python library for rich text and beautiful formatting 
-    in the terminal.The Rich API makes it easy to add color and style to 
-    terminal output. Rich can also render pretty tables, progress bars, 
-    markdown, syntax highlighted source code, tracebacks, and more — out 
-    of the box.
-  doc_url: https://rich.readthedocs.io/en/latest/
-  dev_url: https://github.com/willmcgugan/rich
+    Rich is a Python library for rich text and beautiful formatting in the terminal.
+
+    The Rich API makes it easy to add color and style to terminal output. Rich
+    can also render pretty tables, progress bars, markdown, syntax highlighted
+    source code, tracebacks, and more — out of the box.
+
+  doc_url: https://rich.readthedocs.io
+  dev_url: https://github.com/Textualize/rich
 
 extra:
+  feedstock-name: rich
   recipe-maintainers:
     - jan-janssen
     - willmcgugan
+    - bollwyvl
