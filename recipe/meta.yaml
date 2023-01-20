@@ -53,7 +53,7 @@ outputs:
       host:
         - python {{ min_python }}
       run:
-        - {{ pin_subpackage('rich', exact=True) }}
+        - {{ pin_subpackage("rich", max_pin="x.x.x") }}
         - ipywidgets >=7.5.1,<8.0.0
         - python {{ min_python }}
     test:
@@ -71,8 +71,8 @@ outputs:
       host:
         - python {{ min_python }}
       run:
-        - {{ pin_subpackage('rich', exact=True) }}
-        - {{ pin_subpackage('rich-with-jupyter', exact=True) }}
+        - {{ pin_subpackage("rich", max_pin="x.x.x") }}
+        - {{ pin_subpackage("rich-with-jupyter", max_pin="x.x.x") }}
         - python {{ min_python }}
     test:
       source_files:
@@ -81,7 +81,7 @@ outputs:
         - rich
       commands:
         - pip check
-        - cd src && pytest -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
+        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
       requires:
         - pip
         - pytest >=7.0.0,<8.0.0
