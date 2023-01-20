@@ -38,13 +38,13 @@ outputs:
         - pygments >=2.6.0,<3.0.0
         - python {{ min_python }}
         - typing_extensions >=4.0.0,<5.0.0
-      test:
-        imports:
-          - rich
-        commands:
-          - pip check
-        requires:
-          - pip
+    test:
+      imports:
+        - rich
+      commands:
+        - pip check
+      requires:
+        - pip
 
   - name: rich-with-jupyter
     build:
