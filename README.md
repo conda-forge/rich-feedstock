@@ -1,23 +1,23 @@
 About rich
 ==========
 
-Home: https://github.com/willmcgugan/rich
+Home: https://github.com/Textualize/rich
 
 Package license: MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rich-feedstock/blob/main/LICENSE.txt)
 
-Summary: Rich is a Python library for rich text and beautiful formatting in the terminal.
+Summary: Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal
 
-Development: https://github.com/willmcgugan/rich
+Development: https://github.com/Textualize/rich
 
-Documentation: https://rich.readthedocs.io/en/latest/
+Documentation: https://rich.readthedocs.io
 
-Rich is a Python library for rich text and beautiful formatting
-in the terminal.The Rich API makes it easy to add color and style to
-terminal output. Rich can also render pretty tables, progress bars,
-markdown, syntax highlighted source code, tracebacks, and more — out
-of the box.
+Rich is a Python library for rich text and beautiful formatting in the terminal.
+
+The Rich API makes it easy to add color and style to terminal output. Rich
+can also render pretty tables, progress bars, markdown, syntax highlighted
+source code, tracebacks, and more — out of the box.
 
 
 Current build status
@@ -38,7 +38,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-_rich--with--tests-green.svg)](https://anaconda.org/conda-forge/_rich-with-tests) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/_rich-with-tests.svg)](https://anaconda.org/conda-forge/_rich-with-tests) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/_rich-with-tests.svg)](https://anaconda.org/conda-forge/_rich-with-tests) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/_rich-with-tests.svg)](https://anaconda.org/conda-forge/_rich-with-tests) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-rich-green.svg)](https://anaconda.org/conda-forge/rich) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/rich.svg)](https://anaconda.org/conda-forge/rich) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/rich.svg)](https://anaconda.org/conda-forge/rich) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/rich.svg)](https://anaconda.org/conda-forge/rich) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-rich--with--jupyter-green.svg)](https://anaconda.org/conda-forge/rich-with-jupyter) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/rich-with-jupyter.svg)](https://anaconda.org/conda-forge/rich-with-jupyter) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/rich-with-jupyter.svg)](https://anaconda.org/conda-forge/rich-with-jupyter) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/rich-with-jupyter.svg)](https://anaconda.org/conda-forge/rich-with-jupyter) |
 
 Installing rich
 ===============
@@ -50,41 +52,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `rich` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `_rich-with-tests, rich, rich-with-jupyter` can be installed with `conda`:
 
 ```
-conda install rich
-```
-
-or with `mamba`:
-
-```
-mamba install rich
-```
-
-It is possible to list all of the versions of `rich` available on your platform with `conda`:
-
-```
-conda search rich --channel conda-forge
+conda install _rich-with-tests rich rich-with-jupyter
 ```
 
 or with `mamba`:
 
 ```
-mamba search rich --channel conda-forge
+mamba install _rich-with-tests rich rich-with-jupyter
+```
+
+It is possible to list all of the versions of `_rich-with-tests` available on your platform with `conda`:
+
+```
+conda search _rich-with-tests --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search _rich-with-tests --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search rich --channel conda-forge
+mamba repoquery search _rich-with-tests --channel conda-forge
 
-# List packages depending on `rich`:
-mamba repoquery whoneeds rich --channel conda-forge
+# List packages depending on `_rich-with-tests`:
+mamba repoquery whoneeds _rich-with-tests --channel conda-forge
 
-# List dependencies of `rich`:
-mamba repoquery depends rich --channel conda-forge
+# List dependencies of `_rich-with-tests`:
+mamba repoquery depends _rich-with-tests --channel conda-forge
 ```
 
 
