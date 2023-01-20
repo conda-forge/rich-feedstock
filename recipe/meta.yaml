@@ -84,7 +84,7 @@ outputs:
         - rich
       commands:
         - pip check
-        - cd src/tests && python -m pytest -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
+        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
       requires:
         - pip
         - pytest >=7.0.0,<8.0.0
