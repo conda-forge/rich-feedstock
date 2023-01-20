@@ -27,13 +27,16 @@ outputs:
   - name: rich
     build:
       noarch: python
-      script: cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+      script:
+        # use the poetry-generated setup.py
+        - {{ PYTHON }} -c "__import__('pathlib').Path('dist/pyproject.toml').unlink()"
+        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
     requirements:
       host:
         - pip
-        - poetry-core >=1.0.0
         - python {{ min_python }}
       run:
+        # sync with normalized deps from poetry-generated setup.py
         - markdown-it-py >=2.1.0,<3.0.0
         - pygments >=2.6.0,<3.0.0
         - python {{ min_python }}
