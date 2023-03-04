@@ -1,6 +1,7 @@
 {% set min_python = ">=3.7.0" %}
 {% set min_python = ">=3.7.0" %}
-{% set version = "13.3.1" %}
+{% set min_python = ">=3.7.0" %}
+{% set version = "13.3.2" %}
 {% set min_python = ">=3.7.0" %}
 
 package:
@@ -10,14 +11,14 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: 125d96d20c92b946b983d0d392b84ff945461e5a06d3867e9f9e575f8697b67f
+    sha256: 91954fe80cfb7985727a467ca98a7618e5dd15178cc2da10f553b36a93859001
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 378a8796062259d00a4abb1a42a38efd1cf91dcb40957fc6e111a4e151e1da07
+    sha256: dd6c7f5cddfd890a1d729483cb62b4560d05cb8c7e2fae189247534128235074
 
 build:
   noarch: python
-  number: 1
+  number: 0
 
 requirements:
   host:
