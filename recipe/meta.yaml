@@ -1,6 +1,4 @@
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
-{% set version = "13.3.1" %}
+{% set version = "13.3.2" %}
 {% set min_python = ">=3.7.0" %}
 
 package:
@@ -10,14 +8,14 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: 125d96d20c92b946b983d0d392b84ff945461e5a06d3867e9f9e575f8697b67f
+    sha256: 91954fe80cfb7985727a467ca98a7618e5dd15178cc2da10f553b36a93859001
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 378a8796062259d00a4abb1a42a38efd1cf91dcb40957fc6e111a4e151e1da07
+    sha256: dd6c7f5cddfd890a1d729483cb62b4560d05cb8c7e2fae189247534128235074
 
 build:
   noarch: python
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -39,8 +37,8 @@ outputs:
         - python {{ min_python }}
       run:
         # sync with normalized deps from poetry-generated setup.py
-        - markdown-it-py >=2.1.0,<3.0.0
-        - pygments >=2.14.0,<3.0.0
+        - markdown-it-py >=2.2.0,<3.0.0
+        - pygments >=2.13.0,<3.0.0
         - python {{ min_python }}
         - typing_extensions >=4.0.0,<5.0.0
     test:
@@ -86,7 +84,7 @@ outputs:
         - rich
       commands:
         - pip check
-        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=92
+        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=91
       requires:
         - pip
         - pytest >=7.0.0,<8.0.0

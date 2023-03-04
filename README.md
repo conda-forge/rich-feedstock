@@ -1,11 +1,11 @@
-About rich
-==========
+About rich-feedstock
+====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rich-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/Textualize/rich
 
 Package license: MIT
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/rich-feedstock/blob/main/LICENSE.txt)
 
 Summary: Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal
 
