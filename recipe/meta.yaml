@@ -28,7 +28,7 @@ outputs:
     build:
       noarch: python
       script:
-        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
         - pip
