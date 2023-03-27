@@ -1,4 +1,4 @@
-{% set version = "13.3.2" %}
+{% set version = "13.3.3" %}
 {% set min_python = ">=3.7.0" %}
 
 package:
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: 91954fe80cfb7985727a467ca98a7618e5dd15178cc2da10f553b36a93859001
+    sha256: dc84400a9d842b3a9c5ff74addd8eb798d155f36c1c91303888e0a66850d2a15
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: dd6c7f5cddfd890a1d729483cb62b4560d05cb8c7e2fae189247534128235074
+    sha256: 292990f15b174879ac56638e7e8d7cabb8ccdef8624db607cdfa94827ed23504
 
 build:
   noarch: python
@@ -28,12 +28,11 @@ outputs:
     build:
       noarch: python
       script:
-        # use the poetry-generated setup.py
-        - {{ PYTHON }} -c "__import__('pathlib').Path('dist/pyproject.toml').unlink()"
-        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
+        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       host:
         - pip
+        - poetry-core >=1.0.0
         - python {{ min_python }}
       run:
         # sync with normalized deps from poetry-generated setup.py
