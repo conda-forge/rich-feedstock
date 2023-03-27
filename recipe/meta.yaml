@@ -1,4 +1,3 @@
-{% set min_python = ">=3.7.0" %}
 {% set version = "13.3.3" %}
 {% set min_python = ">=3.7.0" %}
 
@@ -29,12 +28,11 @@ outputs:
     build:
       noarch: python
       script:
-        # use the poetry-generated setup.py
-        - {{ PYTHON }} -c "__import__('pathlib').Path('dist/pyproject.toml').unlink()"
         - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps
     requirements:
       host:
         - pip
+        - poetry-core >=1.0.0
         - python {{ min_python }}
       run:
         # sync with normalized deps from poetry-generated setup.py
