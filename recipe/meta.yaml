@@ -1,5 +1,5 @@
-{% set version = "13.3.3" %}
 {% set min_python = ">=3.7.0" %}
+{% set version = "13.3.4" %}
 
 package:
   name: rich-split
@@ -8,10 +8,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: dc84400a9d842b3a9c5ff74addd8eb798d155f36c1c91303888e0a66850d2a15
+    sha256: b5d573e13605423ec80bdd0cd5f8541f7844a0e71a13f74cf454ccb2f490708b
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 292990f15b174879ac56638e7e8d7cabb8ccdef8624db607cdfa94827ed23504
+    sha256: 11f70b34b1e752557761e4a4ce0d15296db672a58ec8f0ae990cba73ce9a72cf
 
 build:
   noarch: python
@@ -85,6 +85,7 @@ outputs:
         - pip check
         - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=91
       requires:
+        - attrs
         - pip
         - pytest >=7.0.0,<8.0.0
         - pytest-cov >=3.0.0,<4.0.0
