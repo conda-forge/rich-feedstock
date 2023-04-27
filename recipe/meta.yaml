@@ -1,5 +1,6 @@
 {% set min_python = ">=3.7.0" %}
-{% set version = "13.3.4" %}
+{% set min_python = ">=3.7.0" %}
+{% set version = "13.3.5" %}
 
 package:
   name: rich-split
@@ -8,10 +9,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: b5d573e13605423ec80bdd0cd5f8541f7844a0e71a13f74cf454ccb2f490708b
+    sha256: 2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 11f70b34b1e752557761e4a4ce0d15296db672a58ec8f0ae990cba73ce9a72cf
+    sha256: a8877d5c58679371c18d29b8d8120d0a7c8f826f3e8d4dd0324f21bb8b3b59ff
 
 build:
   noarch: python
