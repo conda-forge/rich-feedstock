@@ -1,7 +1,4 @@
 {% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
 {% set version = "13.4.2" %}
 
 package:
@@ -39,7 +36,7 @@ outputs:
         - python {{ min_python }}
       run:
         # sync with normalized deps from poetry-generated setup.py
-        - markdown-it-py >=2.2.0,<3.0.0
+        - markdown-it-py >=2.2.0
         - pygments >=2.13.0,<3.0.0
         - python {{ min_python }}
         - typing_extensions >=4.0.0,<5.0.0
