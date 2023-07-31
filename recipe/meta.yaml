@@ -1,7 +1,5 @@
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
 {% set version = "13.5.1" %}
+{% set min_python = ">=3.7.0" %}
 
 package:
   name: rich-split
