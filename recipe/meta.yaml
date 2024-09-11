@@ -1,11 +1,10 @@
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
-{% set min_python = ">=3.7.0" %}
 {% set version = "13.8.1" %}
-{% set min_python = ">=3.7.0" %}
+
+# handle undefined PYTHON in `noarch: generic` outputs
+{% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
 
 package:
-  name: rich-split
+  name: rich
   version: {{ version }}
 
 source:
@@ -17,50 +16,40 @@ source:
     sha256: 9e9e8be20746eeb5372df4ccba60775e1d3ed819008760ad70291dd3273b0db3
 
 build:
-  noarch: python
   number: 0
+  noarch: python
+  script:
+    - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python {{ min_python }}
+    - pip
+    - poetry-core >=1.0.0
+    - python >=3.7
   run:
-    - python {{ min_python }}
+    - markdown-it-py >=2.2.0
+    - pygments >=2.13.0,<3.0.0
+    - python >=3.7
+    - typing_extensions >=4.0.0,<5.0.0
+
+test:
+  imports:
+    - rich
+  commands:
+    - pip check
+  requires:
+    - pip
 
 outputs:
   - name: rich
-    build:
-      noarch: python
-      script:
-        - cd dist && {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-    requirements:
-      host:
-        - pip
-        - poetry-core >=1.0.0
-        - python {{ min_python }}
-      run:
-        # sync with normalized deps from poetry-generated setup.py
-        - markdown-it-py >=2.2.0
-        - pygments >=2.13.0,<3.0.0
-        - python {{ min_python }}
-        - typing_extensions >=4.0.0,<5.0.0
-    test:
-      imports:
-        - rich
-      commands:
-        - pip check
-      requires:
-        - pip
 
   - name: rich-with-jupyter
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - python {{ min_python }}
       run:
         - {{ pin_subpackage("rich", max_pin="x.x.x") }}
         - ipywidgets >=7.5.1,<9.0.0
-        - python {{ min_python }}
     test:
       imports:
         - rich
@@ -71,14 +60,11 @@ outputs:
 
   - name: _rich-with-tests
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - python {{ min_python }}
       run:
         - {{ pin_subpackage("rich", max_pin="x.x.x") }}
         - {{ pin_subpackage("rich-with-jupyter", max_pin="x.x.x") }}
-        - python {{ min_python }}
     test:
       source_files:
         - src/tests
@@ -86,7 +72,8 @@ outputs:
         - rich
       commands:
         - pip check
-        - pytest src/tests -vv --cov=rich --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=91
+        - coverage run --source=rich --branch -m pytest src/tests -vv --color=yes --tb=long
+        - coverage report --show-missing --skip-covered --fail-under=91
       requires:
         - attrs
         - pip
