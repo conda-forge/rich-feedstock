@@ -1,4 +1,4 @@
-{% set version = "13.8.1" %}
+{% set version = "13.9.1" %}
 
 # handle undefined PYTHON in `noarch: generic` outputs
 {% if PYTHON is not defined %}{% set PYTHON = "$PYTHON" %}{% endif %}
@@ -10,10 +10,10 @@ package:
 source:
   - folder: dist
     url: https://pypi.io/packages/source/r/rich/rich-{{ version }}.tar.gz
-    sha256: 8260cda28e3db6bf04d2d1ef4dbc03ba80a824c88b0e7668a0f23126a424844a
+    sha256: 097cffdf85db1babe30cc7deba5ab3a29e1b9885047dab24c57e9a7f8a9c1466
   - folder: src
     url: https://github.com/Textualize/rich/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: 9e9e8be20746eeb5372df4ccba60775e1d3ed819008760ad70291dd3273b0db3
+    sha256: a66adb02dd7328e2bd17327611d8a69d810174175109e72485cd66d0011ec79a
 
 build:
   number: 0
