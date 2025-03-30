@@ -1,0 +1,115 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: 14.0.0
+  python_test_max: "3.13"
+
+recipe:
+  name: rich
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/r/rich/rich-${{ version }}.tar.gz
+    sha256: 82f1bc23a6a21ebca4ae0c45af9bdbc492ed20231dcb63f297d6d1021a9d5725
+    target_directory: dist
+  - url: https://github.com/Textualize/rich/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: 0a1a45eb997b6fd1b133192b9590c9de9bd7fe7e2948540b4433d4ba413f331c
+    target_directory: src
+
+build:
+  number: 0
+  noarch: python
+
+outputs:
+  - package:
+      name: rich
+    build:
+      noarch: python
+      script:
+        - cd dist
+        - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      host:
+        - pip
+        - poetry-core >=1.0.0
+        - python ${{ python_min }}.*
+      run:
+        - markdown-it-py >=2.2.0
+        - pygments >=2.13.0,<3.0.0
+        - python >=${{ python_min }}
+        - typing_extensions >=4.0.0,<5.0.0
+    tests:
+      - python:
+          imports: rich
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_test_max }}.*
+
+  - package:
+      name: rich-with-jupyter
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("rich", upper_bound="x.x.x") }}
+        - ipywidgets >=7.5.1,<9.0.0
+    tests:
+      - python:
+          imports: rich
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_test_max }}.*
+
+  - package:
+      name: _rich-with-tests
+    build:
+      noarch: generic
+    requirements:
+      run:
+        - ${{ pin_subpackage("rich", upper_bound="x.x.x") }}
+        - ${{ pin_subpackage("rich-with-jupyter", upper_bound="x.x.x") }}
+    tests:
+      - python:
+          imports: rich
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_test_max }}.*
+      - files:
+          source:
+            - src/tests/
+          recipe:
+            - run_test.py
+        requirements:
+          run:
+            - attrs
+            - pytest >=7.0.0,<8.0.0
+            - pytest-cov >=3.0.0,<4.0.0
+            - python ${{ python_min }}.*
+        script:
+          - python run_test.py
+
+about:
+  license: MIT
+  license_file: dist/LICENSE
+  summary: Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal
+  description: |
+    Rich is a Python library for rich text and beautiful formatting in the terminal.
+
+    The Rich API makes it easy to add color and style to terminal output. Rich
+    can also render pretty tables, progress bars, markdown, syntax highlighted
+    source code, tracebacks, and more — out of the box.
+
+  homepage: https://github.com/Textualize/rich
+  repository: https://github.com/Textualize/rich
+  documentation: https://rich.readthedocs.io
+
+extra:
+  feedstock-name: rich
+  recipe-maintainers:
+    - jan-janssen
+    - willmcgugan
+    - bollwyvl
