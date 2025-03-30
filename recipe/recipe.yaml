@@ -73,21 +73,24 @@ outputs:
         - ${{ pin_subpackage("rich-with-jupyter", upper_bound="x.x.x") }}
     tests:
       - python:
-          imports:
-            - rich
+          imports: rich
+          pip_check: true
+          python_version:
+            - ${{ python_min }}.*
+            - ${{ python_test_max }}.*
       - files:
           source:
             - src/tests/
+          recipe:
+            - run_test.py
         requirements:
           run:
             - attrs
-            - pip
             - pytest >=7.0.0,<8.0.0
             - pytest-cov >=3.0.0,<4.0.0
+            - python ${{ python_min }}.*
         script:
-          - pip check
-          - coverage run --source=rich --branch -m pytest src/tests -vv --color=yes --tb=long
-          - coverage report --show-missing --skip-covered --fail-under=91
+          - python run_test.py
 
 about:
   license: MIT
