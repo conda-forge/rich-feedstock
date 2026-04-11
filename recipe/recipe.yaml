@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "14.3.3"
+  version: "14.3.4"
   python_test_max: "3.13"
 
 recipe:
@@ -11,10 +11,10 @@ recipe:
 
 source:
   - url: https://pypi.org/packages/source/r/rich/rich-${{ version }}.tar.gz
-    sha256: b8daa0b9e4eef54dd8cf7c86c03713f53241884e814f4e2f5fb342fe520f639b
+    sha256: 817e02727f2b25b40ef56f5aa2217f400c8489f79ca8f46ea2b70dd5e14558a9
     target_directory: dist
   - url: https://github.com/Textualize/rich/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 1d2bb04feb4823a07d2784224bc5690fecbd8dfd032c7d23a8a9cec1a430787f
+    sha256: f2f8d93db343e90f74e6d997538cf951f973176cb27a6c2b75dd832ba2b868dc
     target_directory: src
 
 build:
